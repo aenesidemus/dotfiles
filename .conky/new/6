@@ -1,0 +1,17 @@
+override_utf8_locale yes
+use_xft yes
+xftfont Sans:size=9
+xftalpha 255
+update_interval 1.0
+own_window yes
+own_window_transparent yes               
+own_window_type desktop
+own_window_colour 000000
+double_buffer yes
+minimum_size 950 5
+draw_shades no
+alignment top_right
+gap_x 0
+gap_y 0 
+TEXT   
+${voffset 2} ${color grey}Core 1: ${color white}${cpu cpu0}%  ${color grey}|  ${color grey}Core 2: ${color white}${cpu cpu1}% ${color grey} | ${color grey}RAM: ${color white}${mem}  ${color grey}| ${color grey} Down: ${color white}${downspeed eth0} kiB/s (${totaldown eth0})  ${color grey}| ${color grey} Upload: ${color white}${upspeed eth0} kiB/s (${totalup eth0})${alignr}${color white}${time %d.%m.%Y}${color grey} | ${color white}${time %H:%M} 
