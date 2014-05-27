@@ -1,0 +1,38 @@
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+use_spacer yes
+use_xft no
+update_interval 3.0
+minimum_size 200
+maximum_width 200
+draw_shades no
+draw_outline no
+draw_borders no
+uppercase no
+stippled_borders 3
+border_margin 5
+border_width 2b0
+default_color white
+own_window_colour black
+own_window_transparent yes
+alignment top_right
+gap_x 5
+gap_y 10
+
+TEXT
+CPU: ${alignr} ${cpu cpu}%
+${color green}${cpubar 4}$color
+
+RAM: ${alignr} $memperc%
+${color green}${membar 4}$color
+
+NAME              CPU%      MEM%
+${color a2a2a2}${hr}$color
+${color green}${top name 1} ${top cpu 1}    ${top mem 1}$color
+${top name 2} ${top cpu 2}    ${top mem 2}
+${top name 3} ${top cpu 3}    ${top mem 3}
+
+DOWN: ${totaldown ppp0} $alignr UP: ${totalup ppp0}

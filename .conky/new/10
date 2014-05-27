@@ -1,0 +1,75 @@
+use_xft yes
+xftfont Arial:style=Bold:pixelsize=12
+xftalpha 0.8
+text_buffer_size 2048
+update_interval 1
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type override
+default_graph_size 99 10
+default_bar_size 99 10
+double_buffer yes
+minimum_size 220 180
+draw_shades no
+draw_outline no
+draw_borders no
+stippled_borders 0
+border_margin 5
+border_width 1
+default_color black
+own_window_colour white
+alignment top_right
+gap_x 5
+gap_y 30
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+use_spacer none
+
+
+TEXT
+${font Arial:style=Bold:pixelsize=14}Система ${hr 2}
+${voffset 2}${font OpenLogos:size=16}u${voffset -6}${font} Ядро:  ${alignr}${kernel}
+${voffset 2}${font StyleBats:size=16}q${font} ${voffset -3}Аптайм: ${alignr}${uptime}
+${voffset 2}${font StyleBats:size=16}A${font} ${voffset -3}ЦП1: ${cpu cpu1}% ${alignr 2}${cpubar cpu1 8,59}${alignr}${cpugraph cpu1 8,59 0000FF 0000FF}
+${voffset 2}${font StyleBats:size=16}A${font} ${voffset -3}ЦП2: ${cpu cpu2}% ${alignr 2}${cpubar cpu1 8,59}${alignr}${cpugraph cpu1 8,59 0000FF 0000FF}
+${voffset 2}${font StyleBats:size=16}g${font} ${voffset -3}ОЗУ: $memperc% ${alignr}${membar 8,120}
+${voffset 2}${font Pie charts for maps:size=14}7${font} ${voffset -3}/ : ${fs_used /}${alignr}${fs_bar 8,120 /}
+${voffset 2}${font Pie charts for maps:size=14}7${font} ${voffset -3}~: ${fs_used /home}${alignr}${fs_bar 8,120 /home}
+${font Arial:style=Bold:pixelsize=14}${hr 2}${font}
+${color blue}${top name 1}${alignr}${top cpu 1}${color}
+${top name 2}${alignr}${top cpu 2}
+${top name 3}${alignr}${top cpu 3}
+${top name 4}${alignr}${top cpu 4}
+${top name 5}${alignr}${top cpu 5}
+${font Arial:style=Bold:pixelsize=14}${hr 2}${font}
+${color blue}${top_mem name 1}${alignr}${top_mem mem_res 1}${color}
+${top_mem name 2}${alignr}${top_mem mem_res 2}
+${top_mem name 3}${alignr}${top_mem mem_res 3}
+${top_mem name 4}${alignr}${top_mem mem_res 4}
+${top_mem name 5}${alignr}${top_mem mem_res 5}
+${font Arial:style=Bold:pixelsize=14}${hr 2}
+${font weather:size=26}y ${font}${voffset -3}${offset -10}ЦП:${alignr}${acpitemp}°C
+${font weather:size=26}y ${font}${voffset -3}${offset -10}ГП:${alignr}${execi 1 ~/.conky/temp-nvidia.sh}°C
+${font weather:size=26}y ${font}${voffset -3}${offset -10}Hitachi:${alignr}${execi 1 ~/.conky/temp-hitachi.sh}°C
+${font weather:size=26}y ${font}${voffset -3}${offset -10}Seagate:${alignr}${execi 1 ~/.conky/temp-seagate.sh}°C
+${voffset 9}${font xspiralmental:size=13}E${font}${offset 2}ЦП кулер,об/мин: ${alignr}${execi 1 ~/.conky/fan-speed.sh}
+
+${font Arial:style=Bold:pixelsize=14}Сеть ${hr 2}
+${font Arial:style=Bold:pixelsize=14}${alignc}ppp0
+${voffset 2}${font PizzaDude Bullets:size=13}U${font} ${voffset -1}${color blue}${downspeed ppp0}/s${color} ${alignr}${downspeedgraph ppp0 8,120 0000FF 31ADFF}
+${voffset 2}${font PizzaDude Bullets:size=13}T${font} Траф.(сут):${alignr}${execi 1 ~/.conky/vnstat-ppp0-d-down.sh}
+${voffset 2}${font PizzaDude Bullets:size=13}T${font} Траф.(мес):${alignr}${execi 1 ~/.conky/vnstat-ppp0-m-down.sh}
+${voffset 2}${font PizzaDude Bullets:size=13}O${font} ${voffset -1}${color blue}${upspeed ppp0}/s${color} ${alignr}${upspeedgraph ppp0 8,120 0000FF 31ADFF}
+${voffset 2}${font PizzaDude Bullets:size=13}N${font} Траф.(сут):${alignr}${execi 1 ~/.conky/vnstat-ppp0-d-up.sh}
+${voffset 2}${font PizzaDude Bullets:size=13}N${font} Траф.(мес):${alignr}${execi 1 ~/.conky/vnstat-ppp0-m-up.sh}
+${font Arial:style=Bold:pixelsize=14}${alignc}eth0
+${voffset 2}${font PizzaDude Bullets:size=13}U${font} ${voffset -1}${color blue}${downspeed eth0}/s${color} ${alignr}${downspeedgraph eth0 8,120 0000FF 31ADFF}
+${voffset 2}${font PizzaDude Bullets:size=13}T${font} Траф.(сут):${alignr}${execi 1 ~/.conky/vnstat-eth0-d-down.sh}
+${voffset 2}${font PizzaDude Bullets:size=13}T${font} Траф.(мес):${alignr}${execi 1 ~/.conky/vnstat-eth0-m-down.sh}
+${voffset 2}${font PizzaDude Bullets:size=13}O${font} ${voffset -1}${color blue}${upspeed eth0}/s${color} ${alignr}${upspeedgraph eth0 8,120 0000FF 31ADFF}
+${voffset 2}${font PizzaDude Bullets:size=13}N${font} Траф.(сут):${alignr}${execi 1 ~/.conky/vnstat-eth0-d-up.sh}
+${voffset 2}${font PizzaDude Bullets:size=13}N${font} Траф.(мес):${alignr}${execi 1 ~/.conky/vnstat-eth0-m-up.sh}

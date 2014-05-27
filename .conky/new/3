@@ -1,0 +1,150 @@
+# Conky sample configuration
+#
+# the list of variables has been removed from this file in favour
+# of keeping the documentation more maintainable.
+# Check http://conky.sf.net for an up-to-date-list.
+
+# set to yes if you want Conky to be forked in the background
+background yes
+
+# X font when Xft is disabled, you can pick one with program xfontsel
+#font 5x7
+#font 6x10
+#font 7x13
+#font 8x13
+#font 9x15
+#font *mintsmild.se*
+#font -*-*-*-*-*-*-34-*-*-*-*-*-*-*
+
+
+# Use Xft?
+use_xft yes
+
+# Set conky on the bottom of all other applications
+own_window_hints below
+
+# Xft font when Xft is enabled
+xftfont Sans:style=Bold:size=10
+
+# Text alpha when using Xft
+xftalpha 1
+
+# Print everything to stdout?
+# out_to_console no
+
+# MPD host/port
+# mpd_host localhost
+# mpd_port 6600
+# mpd_password tinker_bell
+
+# Print everything to console?
+# out_to_console no
+
+# mail spool
+#mail_spool $MAIL
+
+# Update interval in seconds
+update_interval 5
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_hints undecorated,below,skip_taskbar
+own_window_type override
+
+# Use pseudo transparency with own_window?
+own_window_transparent yes
+
+# If own_window_transparent is set to no, you can set the background colour here
+#own_window_colour hotpink
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 280 5
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 8
+
+# border margins
+border_margin 5
+
+# border width
+border_width 10
+
+# Default colors and also border colors
+default_color white
+default_shade_color black
+default_outline_color black
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+#alignment none
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 50
+gap_y 12
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 1
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 1
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer yes
+
+#   mldonkey_hostname     Hostname for mldonkey stuff, defaults to localhost
+#   mldonkey_port         Mldonkey port, 4001 default
+#   mldonkey_login        Mldonkey login, default none
+#   mldonkey_password     Mldonkey password, default none
+
+# boinc (seti) dir
+# seti_dir /opt/seti
+
+# Allow for the creation of at least this number of port monitors (if 0 or not set, default is 16) 
+min_port_monitors 16
+
+# Allow each port monitor to track at least this many connections (if 0 or not set, default is 256)
+min_port_monitor_connections 256
+
+# variable is given either in format $variable or in ${variable}. Latter
+# allows characters right after the variable and must be used in network
+# stuff because of an argument
+
+# stuff after 'TEXT' will be formatted on screen
+
+TEXT
+${color white}CPU Usage:${color white} $cpu%  <->  ${color white}File systems: ${color white}${fs_used /} of ${fs_size /}   <->  ${time %l:%M %a %b %d}  <->  ${color white}RAM Usage:${color white} $mem of $memmax ${color white}= ${color white}$memperc%  
+${color white}IN:${downspeed eth0}k/s  <->  ${color white}OUT:${upspeed eth0}k/s  <->  ${color white}Connections: ${tcp_portmon 1 65535 count}  
+${color white}Netstat 
+${color white}${execi 2 netstat -e -p -t | grep ESTABLISHED | cut -c45-68,80-86,102-140}

@@ -1,0 +1,33 @@
+[begin] (Calendar v0.2)
+  [submenu] (Tools)
+    [exec] (Current Month) {/home/shur1k/.fluxbox/cal/updatecal.sh reset}
+    [exec] (Reverse) {/home/shur1k/.fluxbox/cal/updatecal.sh -m}
+    [exec] (Forward) {/home/shur1k/.fluxbox/cal/updatecal.sh +m}
+  [end]
+  [submenu] (<<)
+    [nop] (     March 2014     )
+    [nop] (Su Mo Tu We Th Fr Sa)
+    [nop] (                   1)
+    [nop] ( 2  3  4  5  6  7  8)
+    [nop] ( 9 10 11 12 13 14 15)
+    [nop] (16 17 18 19 20 21 22)
+    [nop] (23 24 25 26 27 28 29)
+    [nop] (30 31)
+  [end]
+    [nop] (     April 2014     )
+    [nop] (Su Mo Tu We Th Fr Sa)
+    [nop] (       1  2  3  4  5)
+    [nop] ( 6  7  8  9 10 11 12)
+    [nop] (13 14 15 16 17 18 19)
+    [nop] (20 21 22 23 24 25 26)
+    [nop] (27 28 29 30)
+  [submenu] (>>)
+    [nop] (      May 2014      )
+    [nop] (Su Mo Tu We Th Fr Sa)
+    [nop] (             1  2  3)
+    [nop] ( 4  5  6  7  8  9 10)
+    [nop] (11 12 13 14 15 16 17)
+    [nop] (18 19 20 21 22 23 24)
+    [nop] (25 26 27 28 29 30 31)
+  [end]
+[end]

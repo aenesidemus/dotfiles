@@ -1,0 +1,75 @@
+background yes
+
+use_xft yes
+
+# xft font when Xft is enabled
+xftfont Sans:size=8
+
+# Text alpha when using Xft
+xftalpha 0.8
+
+update_interval 1
+text_buffer_size 1024
+own_window yes
+own_window_colour hotpink
+own_window_type override
+own_window_transparent yes
+maximum_width 125
+minimum_size 150 5
+draw_shades no
+draw_outline no
+draw_borders no
+stippled_borders 8
+border_margin 4
+border_width 1
+default_color white
+default_shade_color black
+default_outline_color black
+alignment top_right
+gap_x 5
+gap_y 265
+uppercase no
+double_buffer yes
+override_utf8_locale yes
+
+TEXT
+${color blue}${alignr}CPU-[core-1]$color-|
+${alignr}${cpu cpu0} %---|
+${alignr}${freq}MHz------|
+${alignr}${cpubar cpu0 5,86}---|
+${alignr}Temp1: ${color yellow}${execi 2 sensors | grep 'temp' | cut -c 14-21}$color--|
+${color blue}${alignr}CPU-[core-2]$color-|
+${alignr}${cpu cpu1} %---|
+${alignr}${freq}MHz------|
+${alignr}${cpubar cpu1 5,86}---|
+${alignr}Temp2: ${color yellow}${execi 2 sensors | grep 'temp' | cut -c 14-21}$color--|
+${alignr}${color #87e1ea}VIDEO$color-|
+${alignr}GPU: Nvidia 8400GS-|
+${alignr}Core temp: ${color red}${execi 3 nvidia-settings -q gpucoretemp  |grep '):' | awk '{print $4;
+}' | awk -F.  '{print $1;}'}В°C$color--|
+${alignr}${color #87e1ea}MEMORY$color-|
+${alignr}$memperc%------|
+${alignr}$mem / $memmax-|
+${alignr}${membar 5,69}$color---|
+${alignr}${color #87e1ea}HARD DRIVE$color-|
+${alignr}${fs_used_perc /home}%-/HOME used--|
+${alignr}${fs_free /home} / ${fs_size /home}-|
+${alignr}${fs_bar 5,69 /home}---|
+${alignr}${fs_used_perc /media/archive}%-ARCHIVE-used--|
+${alignr}${fs_free /media/archive} / ${fs_size /media/archive}-|
+${alignr}${fs_bar 5,69 /media/archive}---|
+$color
+${alignr}${color #87e1ea}NETWORK$color-|
+${alignr}ESSID:[${color orange}${wireless_essid wlan0}${color white}]-|
+${alignr}AP Bitrate: ${color orange}${wireless_bitrate wlan0}${color white}--|
+${alignr}Link: ${wireless_link_qual_perc wlan0}% ${alignr}${wireless_link_bar 8,45 wlan0}-|
+${alignr}${addr wlan0}---|
+${alignr}Download---|
+${alignr}${downspeed wlan0} k/s------|
+${alignr}${totaldown wlan0}---------|
+${alignr}${downspeedgraph wlan0 10,50 96A0A3 96A0A3}---|
+${alignr}Upload---|
+${alignr}${upspeed wlan0} k/s------|
+${alignr}${totalup wlan0}---------|
+${alignr}${upspeedgraph wlan0 10,50 96A0A3 96A0A3}---|
+${alignr}Uptime: $uptime--|
