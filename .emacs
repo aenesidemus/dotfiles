@@ -10,6 +10,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 
+
 (require 'linum+)
 (setq linum-format "%d ")
 (global-linum-mode 1)
