@@ -1,4 +1,4 @@
-# Set up the prompt
+# 
 
 # Less Colors for Man Pages
 #export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
