@@ -32,4 +32,4 @@ xcompmgr -c -I-.015 -O-.03 -D6 -t-5 -l-5 -r4.2 -o.5 &
 
 #exec fluxbox
 # or if you want to keep a log:
-exec fluxbox -log "/home/shur1k/.fluxbox/log"
+exec fluxbox -log "~/.fluxbox.log"
