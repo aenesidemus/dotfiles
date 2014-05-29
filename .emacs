@@ -41,7 +41,7 @@
 
 (setq my-packages
       (append
-       '(projectile litable sudo-save sudo-ext 
+       '(projectile litable sudo-save sudo-ext lua-mode
 		    google-maps tramp magit ctags auto-complete ctypes flycheck)
 ;		    google-maps tramp magit ctags  ctypes flycheck)
 
