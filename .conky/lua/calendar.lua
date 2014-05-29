@@ -12,65 +12,65 @@ c_timer = 0
 -- Print a calendar
 function conky_cal()
 
-if c_timer == 0 then
+   if c_timer == 0 then
 
-	-- Some useful arrays
-	local day_per_month = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
-	local Month = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-		"Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" }
+      -- Some useful arrays
+      local day_per_month = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
+      local Month = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+		      "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" }
 
-	-- Retrieve current date
-	local dtable = os.date("*t")
-	local year = dtable.year
-	local month = dtable.month
-	local day = dtable.day
-	local wday = dtable.wday
+      -- Retrieve current date
+      local dtable = os.date("*t")
+      local year = dtable.year
+      local month = dtable.month
+      local day = dtable.day
+      local wday = dtable.wday
 
-	-- Adjust number of days for February if it is a leap year
-	if month == 2 then
-		if (year % 4 == 0) and (year % 100 ~= 0) or (year % 400 == 0) then
-		day_per_month[2] = day_per_month[2]+1
-		end
-	end
+      -- Adjust number of days for February if it is a leap year
+      if month == 2 then
+	 if (year % 4 == 0) and (year % 100 ~= 0) or (year % 400 == 0) then
+	    day_per_month[2] = day_per_month[2]+1
+	 end
+      end
 
-	-- Compute what day it was the first of the month (0=Monday)
-	local first_day = wday - 2 - (day-1) % 7
-	if first_day < 0 then first_day = first_day + 7 end
+      -- Compute what day it was the first of the month (0=Monday)
+      local first_day = wday - 2 - (day-1) % 7
+      if first_day < 0 then first_day = first_day + 7 end
 
-	-- Format and print header
-	local header = Month[month]
-	result = "${font monofur:size=25}${alignc}" .. header ..
-		"$font\n${alignc}Пн Вт Ср Чт Пт Сб Вс\n${alignc}" .. string.rep("   ", first_day)
+      -- Format and print header
+      local header = Month[month]
+      result = "${font monofur:size=25}${alignc}" .. header ..
+	 "$font\n${alignc}Пн Вт Ср Чт Пт Сб Вс\n${alignc}" .. string.rep("   ", first_day)
 
-	-- Print all days in right order (week starts on Monday)
-	local count=first_day
-	for i=1,day_per_month[month],1 do
-		if i<10 then
-			result = result .. " "
-		end
-		if i == day then
-			result = result .. "${color1}"
-		end
-		result = result .. i
-		if i == day then
-			result = result .. "$color0"
-		end
-		count=count+1
-		if count==7 then
-			result = result .. "\n${alignc}"
-			count = 0
-		else
-			result = result .. " "
-		end
-	end
-	result = result .. string.rep("   ", 6-count) .. "  "
-end
+      -- Print all days in right order (week starts on Monday)
+      local count=first_day
+      for i=1,day_per_month[month],1 do
+	 if i<10 then
 
--- Update timer, reset it after an hour
-c_timer = c_timer + conky_info.update_interval
-if c_timer >= 3600 then c_timer = 0 end
+	 end
+	 if i == day then
+	    result = result .. "${color1}"
+	 end
+	 result = result .. i
+	 if i == day then
+	    result = result .. "$color0"
+	 end
+	 count=count+1
+	 if count==7 then
+	    result = result .. "\n${alignc}"
+	    count = 0
+	 else
+	    result = result .. " "
+	 end
+      end
+      result = result .. string.rep("   ", 6-count) .. "  "
+   end
 
--- And finally, return the result
-return result
+   -- Update timer, reset it after an hour
+   c_timer = c_timer + conky_info.update_interval
+   if c_timer >= 3600 then c_timer = 0 end
+
+   -- And finally, return the result
+   return result
 
 end

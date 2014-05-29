@@ -28,6 +28,8 @@ override_utf8_locale yes
 uppercase no # set to yes if you want all text to be in uppercase
 use_spacer yes
 
+lua_load ~/.conky/lua/hello.lua
+lua_draw_hook_pre startlua
 TEXT
 
 
