@@ -41,7 +41,7 @@
 
 (setq my-packages
       (append
-       '(projectile litable sudo-save sudo-ext lua-mode org-mode
+       '(projectile litable sudo-save sudo-ext lua-mode org-mode web-mode
 		    google-maps tramp magit ctags auto-complete ctypes flycheck)
 ;		    google-maps tramp magit ctags  ctypes flycheck)
 
@@ -125,3 +125,20 @@
 (add-to-list 'flycheck-checkers 'c-gcc)
 
 ;(load "jde")
+
+(setq load-path (cons "/home/shur1k/.emacs.d/geben" load-path))
+
+(autoload 'geben "geben" "DBGp protocol frontend, a script debugger" t)
+
+;; Debug a simple PHP script.
+;; Change the session key my-php-54 to any session key text you like
+(defun my-php-debug ()
+  "Run current PHP script for debugging with geben"
+  (interactive)
+  (call-interactively 'geben)
+  (shell-command
+    (concat "XDEBUG_CONFIG='idekey=my-php-55' /usr/bin/php5.5 "
+    (buffer-file-name) " &"))
+  )
+
+(global-set-key [f5] 'my-php-debug)
