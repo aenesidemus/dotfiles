@@ -25,6 +25,7 @@
 (require 'bs)
 (setq bs-configurations
       '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
+(global-set-key (kbd "<f4>") 'bs-show)
 
 (require 'sr-speedbar)
 (global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
@@ -41,9 +42,9 @@
 
 (setq my-packages
       (append
-       '(projectile litable sudo-save sudo-ext lua-mode org-mode web-mode
+       '(projectile litable sudo-save sudo-ext lua-mode org-mode web-mode js2-mode
 		    google-maps tramp magit ctags auto-complete ctypes flycheck)
-;		    google-maps tramp magit ctags  ctypes flycheck)
+					;		    google-maps tramp magit ctags  ctypes flycheck)
 
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 
@@ -111,20 +112,20 @@
 (flycheck-mode t)
 (defmacro flycheck-define-clike-checker (name command modes)
   `(flycheck-define-checker ,(intern (format "%s" name))
-			    ,(format "A %s checker using %s" name (car command))
-			    :command (,@command source-inplace)
-			    :error-patterns
-			    ((warning line-start (file-name) ":" line ":" column
-				      ": warning: " (message) line-end)
-			     (error line-start (file-name) ":" line ":" column
-				    ": error: " (message) line-end))
-			    :modes ',modes))
+     ,(format "A %s checker using %s" name (car command))
+     :command (,@command source-inplace)
+     :error-patterns
+     ((warning line-start (file-name) ":" line ":" column
+	       ": warning: " (message) line-end)
+      (error line-start (file-name) ":" line ":" column
+	     ": error: " (message) line-end))
+     :modes ',modes))
 (flycheck-define-clike-checker c-gcc
 			       ("gcc" "-fsyntax-only" "-Wall" "-Wextra")
 			       c-mode)
 (add-to-list 'flycheck-checkers 'c-gcc)
 
-;(load "jde")
+					;(load "jde")
 
 (setq load-path (cons "/home/shur1k/.emacs.d/geben" load-path))
 
@@ -137,8 +138,30 @@
   (interactive)
   (call-interactively 'geben)
   (shell-command
-    (concat "XDEBUG_CONFIG='idekey=my-php-55' /usr/bin/php5.5 "
-    (buffer-file-name) " &"))
+   (concat "XDEBUG_CONFIG='idekey=my-php-55' /usr/bin/php5.5 "
+	   (buffer-file-name) " &"))
   )
 
 (global-set-key [f5] 'my-php-debug)
+
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode)) 
+(add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode)) 
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode)) 
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode)) 
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.inc?\\'" . web-mode))
+
+(add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
+
+(add-hook 'js-mode-hook 'js2-minor-mode)
+
+(add-hook 'js-mode-hook
+          (lambda () (flycheck-mode t)))
+
+(add-to-list 'load-path "~/.emacs.d/jshint-mode")
+(require 'flymake-jshint)
+(add-hook 'js-mode-hook
+     (lambda () (flymake-mode t)))
