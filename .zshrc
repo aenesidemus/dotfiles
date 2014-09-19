@@ -26,6 +26,9 @@ HISTFILE=~/.zsh_history
 export TERM=xterm-256color
 #export TERMINFO=~/.terminfo
 
+export ANDROID_SWT="/usr/share/swt-3.7/lib"
+export PATH="/opt/android-sdk-update-manager/platform-tools/:${PATH}"
+
 # включить историю команд
 setopt APPEND_HISTORY
 # # убрать повторяющиеся команды, пустые строки и пр.
