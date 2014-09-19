@@ -24,32 +24,38 @@
 
 (require 'bs)
 (setq bs-configurations
-      '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
+      '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file 
+	 bs-sort-buffer-interns-are-last)))
 (global-set-key (kbd "<f4>") 'bs-show)
 
 (require 'sr-speedbar)
 (global-set-key (kbd "<f12>") 'sr-speedbar-toggle)
 
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
-(require 'yasnippet)
-(yas-global-mode 1)
-(yas/load-directory "~/.emacs.d/yasnippet/snippets")
-
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get)
+
+					;(add-to-list 'load-path "~/.emacs.d/yasnippet")
+					;(require 'yasnippet)
 
 (set-default 'truncate-lines nil)
 
 (setq my-packages
       (append
-       '(projectile litable sudo-save sudo-ext lua-mode org-mode web-mode js2-mode
-		    google-maps tramp magit ctags auto-complete ctypes flycheck)
-					;		    google-maps tramp magit ctags  ctypes flycheck)
+       '(projectile litable sudo-save sudo-ext lua-mode org-mode 
+		    web-mode js2-mode fill-column-indicator
+		    google-maps tramp magit ctags auto-complete 
+		    ctypes flycheck elpy company-mode eclim)
+					;google-maps tramp magit ctags	ctypes flycheck)
 
-       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
+       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name 
+					 el-get-sources))))
 
 (el-get 'sync my-packages)
 					;(el-get 'sync)
+
+(yas-global-mode 1)
+(yas/load-directory "~/.emacs.d/yasnippet/snippets")
+
 (require 'hideshow)
 
 (defvar hs-special-modes-alist
@@ -61,12 +67,12 @@
 	    (js-mode "{" "}" "/[*/]" nil)
 	    (emacs-lisp-mode "(" ")" nil))))
 
-(add-hook 'c-mode-common-hook   'hs-minor-mode)
+(add-hook 'c-mode-common-hook	'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
-(add-hook 'java-mode-hook       'hs-minor-mode)
-(add-hook 'lisp-mode-hook       'hs-minor-mode)
-(add-hook 'perl-mode-hook       'hs-minor-mode)
-(add-hook 'sh-mode-hook         'hs-minor-mode)
+(add-hook 'java-mode-hook	'hs-minor-mode)
+(add-hook 'lisp-mode-hook	'hs-minor-mode)
+(add-hook 'perl-mode-hook	'hs-minor-mode)
+(add-hook 'sh-mode-hook		'hs-minor-mode)
 
 (global-set-key (kbd "<f9>") 'hs-toggle-hiding)
 (global-set-key (kbd "S-<f9>") 'hs-hide-all)
@@ -104,7 +110,7 @@
 
 ;; Autocomplete
 					;(require 'auto-complete-config)
- 					;(add-to-list 'ac-dictionary-directories (expand-file-name
+					;(add-to-list 'ac-dictionary-directories (expand-file-name
 					;					 "~/.emacs.d/el-get/auto-complete/dict"))
 					;(setq ac-comphist-file (expand-file-name
 					;			"~/.emacs.d/ac-comphist.dat"))
@@ -159,9 +165,28 @@
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
 (add-hook 'js-mode-hook
-          (lambda () (flycheck-mode t)))
+	  (lambda () (flymake-mode t)))
 
-(add-to-list 'load-path "~/.emacs.d/jshint-mode")
-(require 'flymake-jshint)
-(add-hook 'js-mode-hook
-     (lambda () (flymake-mode t)))
+(define-globalized-minor-mode
+  global-fci-mode fci-mode (lambda () (fci-mode 1)))
+
+(global-fci-mode t)
+
+					;(package-initialize)
+(elpy-enable)
+
+;(setq eclim-executable "/opt/eclipse-sdk-bin-4.3/eclim")
+
+
+;(add-hook 'python-mode-hook
+;  (lambda ()
+;    (setq indent-tabs-mode t)
+;    (setq python-indent 4)
+;    (setq tab-width 4))
+;    (tabify (point-min) (point-max)))
+
+(add-hook 'python-mode-hook
+  (lambda ()
+    (setq indent-tabs-mode nil))
+
+(setq elpy-rpc-python-command 'python27)
