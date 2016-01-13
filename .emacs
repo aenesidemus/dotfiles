@@ -1,3 +1,7 @@
+;;; start --- my startup configuration
+;;; Commentary:
+;; my configuration
+;;; Code:
 (custom-set-variables
  '(custom-enabled-themes (quote (wombat)))
  '(menu-bar-mode t)
@@ -8,15 +12,13 @@
 
  (custom-set-faces))
 
-(add-to-list 'load-path "~/.emacs.d/")
-
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (require 'linum+)
 (setq linum-format "%d ")
 (global-linum-mode 1)
 
 (desktop-save-mode 1)
-(menu-bar-mode 1)
 
 (require 'ido)
 (ido-mode t)
@@ -44,8 +46,8 @@
        '(projectile litable sudo-save sudo-ext lua-mode org-mode 
 		    web-mode js2-mode fill-column-indicator
 		    google-maps tramp magit ctags auto-complete 
-		    ctypes flycheck elpy company-mode eclim)
-					;google-maps tramp magit ctags	ctypes flycheck)
+		    ctypes flycheck elpy  eclim go-mode)
+					;company-mode google-maps tramp magit ctags	ctypes flycheck)
 
        (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name 
 					 el-get-sources))))
@@ -53,8 +55,14 @@
 (el-get 'sync my-packages)
 					;(el-get 'sync)
 
+
 (yas-global-mode 1)
-(yas/load-directory "~/.emacs.d/yasnippet/snippets")
+(yas/load-directory "~/.emacs.d/lisp/yasnippet/snippets")
+
+
+
+(add-to-list 'load-path "~/.emacs.d/lisp/go-mode")
+(require 'go-mode-autoloads)
 
 (require 'hideshow)
 
@@ -133,7 +141,7 @@
 
 					;(load "jde")
 
-(setq load-path (cons "/home/shur1k/.emacs.d/geben" load-path))
+(setq load-path (cons "/home/shur1k/.emacs.d/lisp/geben" load-path))
 
 (autoload 'geben "geben" "DBGp protocol frontend, a script debugger" t)
 
@@ -187,6 +195,9 @@
 
 (add-hook 'python-mode-hook
   (lambda ()
-    (setq indent-tabs-mode nil))
+    (setq indent-tabs-mode nil)))
 
 (setq elpy-rpc-python-command 'python27)
+
+(provide '.emacs)
+;;; .emacs ends here
