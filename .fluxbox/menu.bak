@@ -28,6 +28,7 @@
       [exec]   (links) {xterm -e links fluxbox.org} 
 [end]
 [submenu] (IRC)
+      [exec]   (skype) {skype} 
       [exec]   (irssi) {xterm -e irssi} 
 [end]
 [submenu] (Analyzers)
@@ -38,9 +39,11 @@
       [exec]   (wpa_gui) {wpa_gui} 
 [end]
 [submenu] (Editors)
+      [exec]   (emacs) {emacs} </home/shur1k/.fluxbox/icons/emacs.xpm>
       [exec]   (nano) {xterm -e nano} 
       [exec]   (vim) {xterm -e vim} 
       [exec]   (vi) {xterm -e vi} 
+      [exec]   (emacs-nw) {xterm -e emacs -nw} </home/shur1k/.fluxbox/icons/emacs.xpm>
 [end]
 [submenu] (Education)
       [exec]   (celestia) {celestia} 
@@ -66,9 +69,6 @@
 [end]
 [submenu] (Office)
       [exec] (Open Office)      {soffice} 
-[end]
-[submenu] (Games)
-      [exec]   (quake3) {quake3} 
 [end]
 [submenu] (System Tools)
       [exec]   (top) {xterm -e top} 
