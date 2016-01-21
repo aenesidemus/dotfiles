@@ -14,8 +14,7 @@ draw_shades no
 draw_outline no
 draw_borders no
 draw_graph_borders yes
-minimum_size 300
-maximum_width 310
+minimum_size 1366 1068
 default_color green
 default_shade_color 000000
 default_outline_color 000000
@@ -28,8 +27,9 @@ override_utf8_locale yes
 uppercase no # set to yes if you want all text to be in uppercase
 use_spacer yes
 
-lua_load ~/.conky/lua/hello.lua
-lua_draw_hook_pre startlua
+lua_load ~/.conky/conkygraph.lua
+lua_startup_hook load_graphs /home/shur1k/.conky/graphs.json
+lua_draw_hook_pre draw_graphs
 TEXT
 
 
